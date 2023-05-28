@@ -1,28 +1,32 @@
 const express = require('express');
-const app = express();
 
-const PORT = process.env.PORT || 8080;
-
-const baseUrl = '/calculator'
-
-app.use(express.json());
-
-const baseRouter = express.Router();
-
-baseRouter.get('/greeting', (req, res) => {
-    return res.send('');
-});
-
-baseRouter.post('/add', (req, res) => {
-    res.json({ "": null });
-});
+const app=express();
+const body={
+    first:4,
+    second:5
+}
+app.get("/caluclator/greeting",(req,res)=>{
+    res.status(200).send("Hello world")
+})
 
 
-baseRouter.post('/subtract', (req, res) => {
-    res.json({ "": null });
-});
 
-app.use(baseUrl, baseRouter);
-app.listen(PORT, () => {
-    console.log("Server running at PORT", PORT);
-});
+app.post(" /calculator/add",(req,res)=>{
+    
+
+    const result = body.first+body.second;
+    
+
+    res.status(200).json({result})
+})
+app.post(" /calculator/subtract",(req,res)=>{
+    
+
+    const result = body.first-body.second;
+    
+
+    res.status(200).json({result})
+})
+app.listen(3000,()=>{
+    console.log(`listening at portnumber 3000....`);
+})
